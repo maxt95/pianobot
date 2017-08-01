@@ -8,7 +8,7 @@ http.createServer(function(req, res) {
         "Content-Type": "text/plain"
     });
     res.send("The service is running\n");
-}).listen(5000);
+}).listen(process.env.PORT || 5000);
 
 const client = new Discord.Client();
 
