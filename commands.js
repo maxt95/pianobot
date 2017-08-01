@@ -9,7 +9,8 @@ function commands(client, message) {
 
 	const params = message.content.split(" ").slice(1); //chops off the starting command
 
-	//const introductions = client.channels.get("").toString();
+	const introductions = client.channels.get("280313739235033088").toString();
+	const assignRoles = client.channels.get("289902600701345792").toString();
 
 	let mentionedUser = "Newby";
 	mentionedUser.username = "unknown";
@@ -22,7 +23,7 @@ function commands(client, message) {
 
 		message.delete();
 
-		message.channel.send(`Hey ${mentionedUser}, welcome! Once you are done reading the rules feel free to post an intro in #introductions to tell us about yourself!`);
+		message.channel.send(`Hey ${mentionedUser}, welcome! Once you are done reading the rules feel free to post an intro in ${introductions} to tell us about yourself!`);
 		console.log(`User "${mentionedUser.username}" was welcomed.`);
 	}
 
@@ -34,12 +35,21 @@ function commands(client, message) {
         console.log(`Channel "${message.channel.name}" was reset.`);
     }
 
+    function approve() {
+    	message.delete();
+
+    	message.channel.send(`You've been approved ${mentionedUser}! Feel free to head on over to ${assignRoles} and learn more about the channels and assign those you want to see!`)
+    }
+
 
     if(message.content.startsWith(prefix + "w")) {
     	welcome();
     }
     else if(message.content.startsWith(prefix + "r")) {
     	reset();
+    }
+    else if(message.content.startsWith(prefix + "a")) {
+    	approve();
     }
     else{
     	message.delete();
